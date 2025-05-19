@@ -1,0 +1,20 @@
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header-column {
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+}
+
+.header-icon img {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
