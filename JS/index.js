@@ -56,6 +56,23 @@ function appStart() {
     if (index !== 0) index -= 1;
   };
 
+  const handleKey = (key) => {
+    const thisBlock = document.querySelector(
+      `.board-column[data-index='${attempts}${index}']`
+    );
+
+    if (key === "BACK") {
+      handleBackspace();
+    } else if (key === "ENTER") {
+      if (index === 5) handleEnterKey();
+    } else if (/^[A-Z]$/.test(key)) {
+      if (index < 5) {
+        thisBlock.innerText = key;
+        index += 1;
+      }
+    }
+  };
+
   const handleKeydown = (event) => {
     const key = event.key.toUpperCase();
     const keyCode = event.keyCode;
@@ -87,6 +104,14 @@ function appStart() {
 
     timer = setInterval(setTime, 1000);
   };
+
+  const keyboardKeys = document.querySelectorAll(".keyboard-column");
+  keyboardKeys.forEach((keyDiv) => {
+    keyDiv.addEventListener("click", () => {
+      const key = keyDiv.dataset.key;
+      handleKey(key);
+    });
+  });
 
   startTimer();
   window.addEventListener("keydown", handleKeydown);
