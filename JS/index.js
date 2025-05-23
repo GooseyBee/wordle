@@ -34,13 +34,28 @@ function appStart() {
       );
       const 입력한_글자 = block.innerText;
       const 정답_글자 = 정답[i];
+
       if (입력한_글자 === 정답_글자) {
         맞은_갯수 += 1;
         block.style.background = "#538D4E";
-      } else if (정답.includes(입력한_글자)) block.style.background = "#b59f3c";
-      else block.style.background = "#3A3A3C";
+        block.classList.add("bounce");
+      } else if (정답.includes(입력한_글자)) {
+        block.style.background = "#b59f3c";
+        block.classList.add("shake");
+      } else {
+        block.style.background = "#3A3A3C";
+        block.classList.add("shake");
+      }
 
       block.style.color = "white";
+
+      block.addEventListener(
+        "animationend",
+        () => {
+          block.classList.remove("shake", "bounce");
+        },
+        { once: true }
+      );
     }
     if (맞은_갯수 === 5) gameover();
     nextLine();
